@@ -5,7 +5,25 @@
 <title>Для моей любимой ❤️</title>
 
 <style>
+/* экран заставки */
 
+#intro{
+position:fixed;
+width:100%;
+height:100vh;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:10;
+}
+
+/* основной сайт скрыт */
+
+#main{
+display:none;
+}
 body{
 margin:0;
 font-family:Times New Roman;
@@ -99,7 +117,14 @@ transform:translateY(110vh);
 </div>
 
 </section>
+function openSite(){
 
+document.getElementById("intro").style.display="none";
+
+document.getElementById("main").style.display="block";
+
+}
+  
 <script>
 function startExperience(){
 
