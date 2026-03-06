@@ -72,7 +72,7 @@ transform:translateY(110vh);
 
 <body>
 
-<audio autoplay loop>
+<audio id="music" loop>
 <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -88,11 +88,18 @@ transform:translateY(110vh);
 
 <section>
 
-<button onclick="showLove()">Нажми ❤️</button>
+<button onclick="startExperience()">Нажми ❤️</button>
+function startExperience(){
 
+document.getElementById("secret").style.display="block";
+
+const music = document.getElementById("music");
+music.play();
+
+}
 <div id="secret">
 Я безумно люблю тебя  
-Спасибо, что ты есть в моей жизни, ты мой маяк, а я — якорь ❤️
+Спасибо, что ты есть в моей жизни, ты мой маяк, а я — твой якорь ❤️
 </div>
 
 </section>
@@ -145,7 +152,7 @@ function typeWriter(){
 if(i < text.length){
 document.getElementById("letter").innerHTML += text.charAt(i);
 i++;
-setTimeout(typeWriter,40);
+setTimeout(typeWriter,100);
 }
 
 }
@@ -155,8 +162,14 @@ typeWriter();
 
 /* кнопка */
 
-function showLove(){
+function startExperience(){
+
 document.getElementById("secret").style.display="block";
+
+const music = document.getElementById("music");
+
+music.play();
+
 }
 
 
