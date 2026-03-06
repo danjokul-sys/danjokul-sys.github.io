@@ -19,7 +19,24 @@ text-align:center;
 
 text-shadow:0 0 10px rgba(0,0,0,0.8);
 }
+#loveButton{
+margin-top:40px;
+display:none;
+background:#ff2d55;
+}
 
+#finalText{
+display:none;
+font-size:40px;
+margin-top:40px;
+animation:fadeIn 2s;
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
+}
+  
 /* заставка */
 
 #intro{
@@ -96,8 +113,8 @@ margin-top:30px;
 .heart{
 position:fixed;
 top:-20px;
-font-size:22px;
-opacity:0.9;
+font-size:14px;
+opacity:0.6;
 animation:fall linear;
 pointer-events:none;
 }
@@ -144,7 +161,13 @@ transform:translateY(110vh);
 
 
 <div id="letter"></div>
+<button id="loveButton" onclick="loveExplosion()">
+Я так тебя люблю ❤️
+</button>
 
+<div id="finalText">
+Ты — лучшее, что со мной произошло ❤️
+</div>
 </div>
 
 <audio id="music" loop playsinline>
@@ -237,7 +260,11 @@ document.getElementById("letter").innerHTML += text.charAt(i);
 i++;
 
 setTimeout(typeLetter,100);
-setInterval(createHeart,1000);
+else{
+document.getElementById("loveButton").style.display="inline-block";
+}
+  
+setInterval(createHeart,3000);
 }
 
 }
