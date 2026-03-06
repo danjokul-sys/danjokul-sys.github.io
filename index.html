@@ -18,8 +18,6 @@ text-shadow:0 0 10px rgba(0,0,0,0.8);
 overflow-x:hidden;
 }
 
-/* заставка */
-
 #intro{
 position:fixed;
 width:100%;
@@ -28,11 +26,28 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-background:url("zast.JPG");
+
+background:
+linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.35)),
+url("zast.jpg");
+
 background-size:cover;
 background-position:center;
+
+animation:zoomBg 12s ease-in-out infinite alternate;
+
 transition:opacity 1s;
+
 z-index:10;
+}
+
+@keyframes zoomBg{
+from{
+background-size:100%;
+}
+to{
+background-size:110%;
+}
 }
 
 .fade-out{
@@ -141,6 +156,19 @@ transform:scale(1);
 box-shadow:0 0 0 0 rgba(255,77,109,0);
 }
 }
+
+#openButton{
+opacity:0;
+margin-top:30px;
+animation:showButton 2s forwards;
+animation-delay:2s;
+}
+
+@keyframes showButton{
+to{
+opacity:1;
+}
+}
   
 </style>
 </head>
@@ -151,9 +179,9 @@ box-shadow:0 0 0 0 rgba(255,77,109,0);
 
 <div id="intro">
 
-<h1>С 8 марта ❤️</h1>
+<h1 id="introText"></h1>
 
-<button onclick="openSite()">Открыть</button>
+<button id="openButton" onclick="openSite()">Открыть</button>
 
 </div>
 
@@ -182,6 +210,22 @@ box-shadow:0 0 0 0 rgba(255,77,109,0);
 </audio>
 
 <script>
+const introMessage = "С 8 марта ❤️";
+let introIndex = 0;
+
+function typeIntro(){
+
+if(introIndex < introMessage.length){
+
+document.getElementById("introText").innerHTML += introMessage.charAt(introIndex);
+
+introIndex++;
+
+setTimeout(typeIntro,120);
+
+}
+
+}
 
 /* открыть сайт */
 
@@ -299,7 +343,7 @@ createHeart();
 }
 
 }
-
+typeIntro();
 </script>
 
 </body>
