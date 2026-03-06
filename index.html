@@ -22,9 +22,6 @@ text-shadow:0 0 10px rgba(0,0,0,0.8);
 
 /* заставка */
 
-
-umn;
-justify-content:center;
 #intro{
 height:100vh;
 display:flex;
@@ -36,6 +33,8 @@ background:url("zast.JPG");
 background-size:cover;
 background-position:center;
 }
+
+
 #intro h1{
 font-size:50px;
 margin-bottom:30px;
@@ -113,9 +112,6 @@ margin-top:30px;
 
 <div id="timer"></div>
 
-<button id="musicButton" onclick="startExperience()">
-Нажми меня
-</button>
 
 <div id="letter"></div>
 
@@ -132,8 +128,11 @@ margin-top:30px;
 function openSite(){
 
 document.getElementById("intro").style.display="none";
-
 document.getElementById("main").style.display="block";
+
+document.getElementById("music").play();
+
+typeLetter();
 
 }
 
