@@ -1,182 +1,173 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Для моей любимой ❤️</title>
 
 <style>
-/* экран заставки */
+
+body{
+margin:0;
+font-family:serif;
+color:white;
+text-align:center;
+
+background:url("background.jpg");
+background-size:cover;
+background-position:center;
+
+text-shadow:0 0 10px rgba(0,0,0,0.8);
+}
+
+/* заставка */
 
 #intro{
-position:fixed;
-width:100%;
 height:100vh;
-background:linear-gradient(135deg,#ff758c,#ff7eb3);
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-z-index:10;
+background:rgba(0,0,0,0.55);
 }
 
-/* основной сайт скрыт */
-
-#main{
-display:none;
-}
-body{
-margin:0;
-font-family:Times New Roman;
-background-image:url("background.jpg");
-background-size:cover;
-background-position:center;
-color:white;
-text-align:center;
-overflow-x:hidden;
+#intro h1{
+font-size:50px;
+margin-bottom:30px;
 }
 
-section{
-padding:80px 20px;
-max-width:700px;
-margin:auto;
-}
-
-h1{
-font-size:48px;
-}
-
-#timer{
-font-size:24px;
-margin-top:20px;
-}
-
-#letter{
-font-size:22px;
-margin-top:40px;
-min-height:120px;
-}
+/* кнопки */
 
 button{
+
 padding:15px 30px;
-font-size:20px;
+font-size:18px;
+
 border:none;
-border-radius:10px;
-background:white;
-color:#ff4b6e;
+border-radius:30px;
+
+background:#ff4d6d;
+color:white;
+
 cursor:pointer;
 }
 
-#secret{
+/* основной сайт */
+
+#main{
 display:none;
+padding:40px;
+background:rgba(0,0,0,0.45);
+min-height:100vh;
+}
+
+#timer{
+margin-top:20px;
+font-size:22px;
+}
+
+#letter{
 margin-top:30px;
-font-size:30px;
-}
-
-/* hearts */
-
-.heart{
-position:fixed;
-top:-10px;
 font-size:20px;
-animation:fall linear forwards;
+max-width:600px;
+margin-left:auto;
+margin-right:auto;
+line-height:1.6;
 }
 
-@keyframes fall{
-to{
-transform:translateY(110vh);
-}
+#musicButton{
+margin-top:30px;
 }
 
 </style>
 </head>
 
 <body>
-<!-- ЭКРАН ПРИВЕТСТВИЯ -->
+
+<!-- заставка -->
 
 <div id="intro">
 
-<h1>С 8 марта, Сонечка ❤️</h1>
+<h1>С 8 марта ❤️</h1>
 
 <button onclick="openSite()">Открыть</button>
 
 </div>
 
-
-<!-- ОСНОВНОЙ САЙТ -->
+<!-- основной сайт -->
 
 <div id="main">
 
-<section>
-
-<h1>Моя любовь ❤️</h1>
+<h1>С 8 марта, Сонечка ❤️</h1>
 
 <div id="timer"></div>
 
+<button id="musicButton" onclick="startExperience()">
+Включить музыку
+</button>
+
 <div id="letter"></div>
 
-<button onclick="startExperience()">Нажми ❤️</button>
-
-<div id="secret">
-Я люблю тебя бесконечно ❤️
 </div>
 
-</section>
-
-</div>
-<audio id="music" loop>
+<audio id="music" loop playsinline>
 <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-
-
-<section>
-
-<button onclick="startExperience()">Нажми ❤️</button>
-
-
-<div id="secret">
-Я безумно люблю тебя  
-Спасибо, что ты есть в моей жизни, ты мой маяк, а я — твой якорь ❤️
-</div>
-
-</section>
-
-  
 <script>
+
+/* открытие сайта */
+
+function openSite(){
+
+document.getElementById("intro").style.display="none";
+
+document.getElementById("main").style.display="block";
+
+}
+
+/* музыка + письмо */
+
 function startExperience(){
 
-document.getElementById("secret").style.display="block";
+document.getElementById("music").play();
 
-const music = document.getElementById("music");
-music.play();
+typeLetter();
+
 }
-/* дата начала отношений */
 
-const startDate = new Date("2026-01-18");
+/* таймер отношений */
 
-/* таймер */
+const startDate = new Date("2024-01-01");
 
 function updateTimer(){
 
 const now = new Date();
+
 const diff = now - startDate;
 
-const days = Math.floor(diff / (1000*60*60*24));
-const hours = Math.floor(diff / (1000*60*60)) % 24;
-const minutes = Math.floor(diff / (1000*60)) % 60;
-const seconds = Math.floor(diff / 1000) % 60;
-  
+const days = Math.floor(diff/(1000*60*60*24));
+const hours = Math.floor(diff/(1000*60*60))%24;
+const minutes = Math.floor(diff/(1000*60))%60;
+const seconds = Math.floor(diff/1000)%60;
+
 document.getElementById("timer").innerHTML =
-"Мы вместе уже " + days + " дней " + hours + " часов " + minutes + " минут " + + seconds + " секунд ❤️";
+"Мы вместе уже " +
+days+" дней "+
+hours+" часов "+
+minutes+" минут "+
+seconds+" секунд ❤️";
 
 }
 
 setInterval(updateTimer,1000);
 
+/* печать текста */
 
-/* письмо печатается */
-text-shadow:0 0 10px rgba(0,0,0,0.7);
 const text = `
+
 Я сделал этот сайт специально для тебя, чтобы у тебя всегда была возможность зайти сюда и вспомнить, как я тебя люблю.
 
 Ты сама прекрасно знаешь, что изначально мы ни на что не рассчитывали, но судьба распорядилась иначе, чему я искренне рад.
@@ -192,56 +183,21 @@ const text = `
 
 let i = 0;
 
-function typeWriter(){
+function typeLetter(){
 
 if(i < text.length){
+
 document.getElementById("letter").innerHTML += text.charAt(i);
+
 i++;
-setTimeout(typeWriter,100);
-}
+
+setTimeout(typeLetter,100);
 
 }
-
-typeWriter();
-
-
-/* кнопка */
-
-
-
-
-/* сердечки */
-
-function createHeart(){
-
-const heart = document.createElement("div");
-
-heart.className="heart";
-heart.innerHTML="❤️";
-
-heart.style.left=Math.random()*100+"vw";
-heart.style.animationDuration=3+Math.random()*3+"s";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>{
-heart.remove();
-},6000);
-
-}
-
-setInterval(createHeart,300);
-
-</script>
-<script>
-
-function openSite(){
-
-document.getElementById("intro").style.display = "none";
-document.getElementById("main").style.display = "block";
 
 }
 
 </script>
+
 </body>
 </html>
