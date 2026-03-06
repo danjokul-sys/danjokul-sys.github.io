@@ -1,160 +1,222 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Для моей любимой ❤️</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: serif;
-            color: white;
-            text-align: center;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-        }
-        #loveButton {
-            margin-top: 40px;
-            display: none;
-            background: #ff2d55;
-        }
-        #finalText {
-            display: none;
-            font-size: 40px;
-            margin-top: 40px;
-            animation: fadeIn 2s;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        /* заставка */
-        #intro {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: url("zast.JPG");
-            background-size: cover;
-            background-position: center;
-            transition: opacity 1s ease;
-        }
-        .fade-out {
-            opacity: 0;
-        }
-        #intro h1 {
-            font-size: 50px;
-            margin-bottom: 30px;
-        }
-        /* кнопки */
-        button {
-            padding: 15px 30px;
-            font-size: 18px;
-            border: none;
-            border-radius: 30px;
-            background: #ff4d6d;
-            color: white;
-            cursor: pointer;
-        }
-        /* основной сайт */
-        #main {
-            display: none;
-            padding: 40px;
-            background: url("background.jpg");
-            background-size: cover;
-            background-position: center;
-            backdrop-filter: blur(6px);
-            min-height: 100vh;
-        }
-        #timer {
-            margin-top: 20px;
-            font-size: 22px;
-        }
-        #letter {
-            margin-top: 30px;
-            font-size: 20px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.7;
-            white-space: pre-line;
-            text-align: left;
-        }
-        #musicButton {
-            margin-top: 30px;
-        }
-        .heart {
-            position: fixed;
-            top: -20px;
-            font-size: 14px;
-            opacity: 0.6;
-            animation: fall linear;
-            pointer-events: none;
-        }
-        @keyframes fall {
-            from { transform: translateY(0); opacity: 1; }
-            to { transform: translateY(110vh); opacity: 0; }
-        }
-    </style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Для моей любимой ❤️</title>
+
+<style>
+
+body{
+margin:0;
+font-family:serif;
+color:white;
+text-align:center;
+text-shadow:0 0 10px rgba(0,0,0,0.8);
+overflow-x:hidden;
+}
+
+/* заставка */
+
+#intro{
+position:fixed;
+width:100%;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:url("zast.jpg");
+background-size:cover;
+background-position:center;
+transition:opacity 1s;
+z-index:10;
+}
+
+.fade-out{
+opacity:0;
+}
+
+#intro h1{
+font-size:50px;
+margin-bottom:30px;
+}
+
+/* кнопка */
+
+button{
+padding:15px 30px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+}
+
+/* основной сайт */
+
+#main{
+display:none;
+min-height:100vh;
+padding:40px;
+background:url("background.jpg");
+background-size:cover;
+background-position:center;
+}
+
+#timer{
+margin-top:20px;
+font-size:22px;
+}
+
+#letter{
+margin-top:30px;
+font-size:20px;
+max-width:650px;
+margin-left:auto;
+margin-right:auto;
+line-height:1.7;
+white-space:pre-line;
+text-align:left;
+background:rgba(0,0,0,0.35);
+padding:25px;
+border-radius:15px;
+}
+
+/* финальная кнопка */
+
+#loveButton{
+display:none;
+margin-top:40px;
+background:#ff2d55;
+}
+
+/* финальный текст */
+
+#finalText{
+display:none;
+font-size:40px;
+margin-top:40px;
+animation:fadeIn 2s;
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+/* сердечки */
+
+.heart{
+position:fixed;
+top:-20px;
+font-size:16px;
+opacity:0.7;
+animation:fall linear;
+pointer-events:none;
+}
+
+@keyframes fall{
+0%{transform:translateY(0);}
+100%{transform:translateY(110vh);}
+}
+
+</style>
 </head>
+
 <body>
-    <!-- заставка -->
-    <div id="intro">
-        <h1>С 8 марта ❤️</h1>
-        <button onclick="openSite()">Открыть</button>
-    </div>
 
-    <!-- основной сайт -->
-    <div id="main">
-        <h1>С 8 марта, Сонечка ❤️</h1>
-        <div id="timer"></div>
-        <div id="letter"></div>
-        <button id="loveButton" onclick="loveExplosion()">Я так тебя люблю ❤️</button>
-        <div id="finalText">Ты — лучшее, что со мной произошло ❤️</div>
-    </div>
+<!-- заставка -->
 
-    <audio id="music" loop playsinline>
-        <source src="music.mp3" type="audio/mpeg">
-    </audio>
+<div id="intro">
 
-    <script>
-        /* открытие сайта */
-        function openSite() {
-            const intro = document.getElementById("intro");
-            intro.classList.add("fade-out");
+<h1>С 8 марта ❤️</h1>
 
-            setTimeout(() => {
-                intro.style.display = "none";
-                document.getElementById("main").style.display = "block";
-                document.getElementById("music").play();
-                typeLetter();
-            }, 1000);
-        }
+<button onclick="openSite()">Открыть</button>
 
-        /* таймер отношений */
-        const startDate = new Date("2026-01-18");
+</div>
 
-        function updateTimer() {
-            const now = new Date();
-            const diff = now - startDate;
+<!-- основной сайт -->
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24)
-                                    const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
-            const minutes = Math.floor(diff / (1000 * 60)) % 60;
-            const seconds = Math.floor(diff / 1000) % 60;
+<div id="main">
 
-            document.getElementById("timer").innerHTML =
-                "Мы вместе уже " +
-                days + " дней " +
-                hours + " часов " +
-                minutes + " минут " +
-                seconds + " секунд ❤️";
-        }
+<h1>С 8 марта, Сонечка ❤️</h1>
 
-        setInterval(updateTimer, 1000);
+<div id="timer"></div>
 
-        /* печать текста */
-        const text = 
+<div id="letter"></div>
+
+<button id="loveButton" onclick="loveExplosion()">
+Я тоже тебя люблю ❤️
+</button>
+
+<div id="finalText">
+Ты — лучшее, что случилось со мной ❤️
+</div>
+
+</div>
+
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* открыть сайт */
+
+function openSite(){
+
+const intro = document.getElementById("intro");
+
+intro.classList.add("fade-out");
+
+setTimeout(()=>{
+
+intro.style.display="none";
+document.getElementById("main").style.display="block";
+
+document.getElementById("music").play();
+
+typeLetter();
+
+setInterval(createHeart,3000);
+
+},1000);
+
+}
+
+/* таймер отношений */
+
+const startDate = new Date("2026-01-18");
+
+function updateTimer(){
+
+const now = new Date();
+const diff = now - startDate;
+
+const days = Math.floor(diff/(1000*60*60*24));
+const hours = Math.floor(diff/(1000*60*60))%24;
+const minutes = Math.floor(diff/(1000*60))%60;
+const seconds = Math.floor(diff/1000)%60;
+
+document.getElementById("timer").innerHTML =
+"Мы вместе уже "+
+days+" дней "+
+hours+" часов "+
+minutes+" минут "+
+seconds+" секунд ❤️";
+
+}
+
+setInterval(updateTimer,1000);
+
+/* письмо */
+
+const text = `
+
 Я сделал этот сайт специально для тебя, чтобы у тебя всегда была возможность зайти сюда и вспомнить, как я тебя люблю.
 
 Ты сама прекрасно знаешь, что изначально мы ни на что не рассчитывали, но судьба распорядилась иначе, чему я искренне рад.
@@ -166,36 +228,61 @@
 и просто спасибо за то, что ты есть.
 
 С 8 марта, моя маленькая принцесса ❤️
-;
+`;
 
-        let i = 0;
+let i = 0;
 
-        function typeLetter() {
-            if (i < text.length) {
-                document.getElementById("letter").innerHTML += text.charAt(i);
-                i++;
-                setTimeout(typeLetter, 100);
-            } else {
-                document.getElementById("loveButton").style.display = "inline-block";
-                setInterval(createHeart, 3000);
-            }
-        }
+function typeLetter(){
 
-        function createHeart() {
-            const heart = document.createElement("div");
-            heart.className = "heart"; // Добавлено для установки класса
-            heart.innerHTML = "❤️"; // Добавлено для отображения сердца
-            heart.style.left = Math.random() * window.innerWidth + "px"; // Позиция по горизонтали
-            document.body.appendChild(heart);
+if(i < text.length){
 
-            // Удаляем сердце через некоторое время
-            setTimeout(() => {
-                heart.remove();
-            }, 5000); // Удалить через 5 секунд
-        }
+document.getElementById("letter").innerHTML += text.charAt(i);
 
-    </script>
+i++;
+
+setTimeout(typeLetter,90);
+
+}else{
+
+document.getElementById("loveButton").style.display="inline-block";
+
+}
+
+}
+
+/* сердечки */
+
+function createHeart(){
+
+const heart = document.createElement("div");
+
+heart.className="heart";
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(4+Math.random()*3)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},7000);
+
+}
+
+/* финальный эффект */
+
+function loveExplosion(){
+
+document.getElementById("finalText").style.display="block";
+
+for(let i=0;i<40;i++){
+createHeart();
+}
+
+}
+
+</script>
+
 </body>
 </html>
-
-
