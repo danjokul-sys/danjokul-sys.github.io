@@ -127,15 +127,7 @@ transform:translateY(110vh);
 <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<section>
 
-<h1>С 8 марта, моя дорогая Сонечка ❤️</h1>
-
-<div id="timer"></div>
-
-<div id="letter"></div>
-
-</section>
 
 <section>
 
@@ -148,13 +140,7 @@ transform:translateY(110vh);
 </div>
 
 </section>
-function openSite(){
 
-document.getElementById("intro").style.display="none";
-
-document.getElementById("main").style.display="block";
-
-}
   
 <script>
 function startExperience(){
@@ -178,9 +164,10 @@ const diff = now - startDate;
 const days = Math.floor(diff / (1000*60*60*24));
 const hours = Math.floor(diff / (1000*60*60)) % 24;
 const minutes = Math.floor(diff / (1000*60)) % 60;
-
+const seconds = Math.floor(diff / 1000) % 60;
+  
 document.getElementById("timer").innerHTML =
-"Мы вместе уже " + days + " дней " + hours + " часов " + minutes + " минут ❤️";
+"Мы вместе уже " + days + " дней " + hours + " часов " + minutes + " минут " + + seconds + " секунд ❤️";
 
 }
 
@@ -188,7 +175,7 @@ setInterval(updateTimer,1000);
 
 
 /* письмо печатается */
-
+text-shadow:0 0 10px rgba(0,0,0,0.7);
 const text = `
 Я сделал этот сайт специально для тебя, чтобы у тебя всегда была возможность зайти сюда и вспомнить, как я тебя люблю.
 
@@ -220,15 +207,7 @@ typeWriter();
 
 /* кнопка */
 
-function startExperience(){
 
-document.getElementById("secret").style.display="block";
-
-const music = document.getElementById("music");
-
-music.play();
-
-}
 
 
 /* сердечки */
