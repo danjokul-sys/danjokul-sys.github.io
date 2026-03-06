@@ -182,7 +182,37 @@ to{
 opacity:1;
 }
 }
-  
+
+#loveButton{
+display:none;
+margin-top:40px;
+}
+
+#bigLove{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:rgba(0,0,0,0.9);
+justify-content:center;
+align-items:center;
+flex-direction:column;
+font-size:80px;
+animation:fadeIn 2s;
+}
+
+#bigLove p{
+font-size:30px;
+margin-top:20px;
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
+}
+
 </style>
 </head>
 
@@ -207,13 +237,21 @@ opacity:1;
 <div id="timer"></div>
 
 <div id="letter"></div>
+  <button id="loveButton" onclick="showLove()">
+Я тоже тебя люблю ❤️
+</button>
+
+<div id="bigLove">
+❤️
+<p>Ты — лучшее, что случилось со мной</p>
+</div>
 
 <button id="loveButton" onclick="loveExplosion()">
 Я тоже тебя люблю ❤️
 </button>
 
 <div id="finalText">
-Ты — лучшее, что случилось со мной ❤️
+Ты — лучшее, что со мной случилось ❤️
 </div>
 
 </div>
@@ -357,6 +395,13 @@ createHeart();
 
 }
 typeIntro();
+  function showLove(){
+
+const block = document.getElementById("bigLove");
+
+block.style.display="flex";
+
+}
 </script>
 
 </body>
