@@ -1,291 +1,194 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Для моей любимой ❤️</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
 
-<title>Для моей любимой ❤️</title>
+  <style>
+    :root {
+      --pink: #ff4d6d;
+      --dark-pink: #ff2d55;
+    }
 
-<style>
+    body {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      color: white;
+      background: #111;
+      text-align: center;
+      text-shadow: 0 0 12px rgba(0,0,0,0.9);
+      overflow-x: hidden;
+    }
 
-body{
-margin:0;
-font-family:serif;
-color:white;
-text-align:center;
+    #intro {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: url("zastavka.webp") center/cover no-repeat;
+      transition: opacity 1.2s ease;
+    }
 
+    #intro.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
 
+    #intro h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(3.2rem, 9vw, 5.5rem);
+      margin: 0 20px 40px;
+    }
 
-text-shadow:0 0 10px rgba(0,0,0,0.8);
-}
-#loveButton{
-margin-top:40px;
-display:none;
-background:#ff2d55;
-}
+    button {
+      padding: 16px 40px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 50px;
+      background: var(--pink);
+      color: white;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    button:hover { transform: scale(1.08); }
 
-#finalText{
-display:none;
-font-size:40px;
-margin-top:40px;
-animation:fadeIn 2s;
-}
+    #main {
+      display: none;
+      padding: 5vh 5vw;
+      min-height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url("background.webp") center/cover no-repeat;
+      backdrop-filter: blur(6px);
+    }
 
-@keyframes fadeIn{
-from{opacity:0;}
-to{opacity:1;}
-}
-  
-/* заставка */
+    #letter {
+      margin: 40px auto;
+      max-width: 680px;
+      font-size: 1.35rem;
+      line-height: 1.75;
+      text-align: left;
+      white-space: pre-line;
+    }
 
-#intro{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
+    .heart {
+      position: fixed;
+      top: -30px;
+      font-size: 1.8rem;
+      pointer-events: none;
+      animation: fall linear forwards;
+    }
 
-background:url("zast.JPG");
-background-size:cover;
-background-position:center;
-  transition:opacity 1s ease;
-}
-.fade-out{
-opacity:0;
-}
-
-#intro h1{
-font-size:50px;
-margin-bottom:30px;
-}
-
-/* кнопки */
-
-button{
-
-padding:15px 30px;
-font-size:18px;
-
-border:none;
-border-radius:30px;
-
-background:#ff4d6d;
-color:white;
-
-cursor:pointer;
-}
-
-/* основной сайт */
-
-#main{
-
-display:none;
-padding:40px;
-
-background:url("background.jpg");
-background-size:cover;
-background-position:center;
-backdrop-filter: blur(6px);
-min-height:100vh;
-
-}
-
-#timer{
-margin-top:20px;
-font-size:22px;
-}
-
-#letter{
-margin-top:30px;
-font-size:20px;
-max-width:600px;
-margin-left:auto;
-margin-right:auto;
-line-height:1.7;
-white-space:pre-line;
-text-align:left;
-}
-
-#musicButton{
-margin-top:30px;
-}
-.heart{
-position:fixed;
-top:-20px;
-font-size:14px;
-opacity:0.6;
-animation:fall linear;
-pointer-events:none;
-}
-
-@keyframes fall{
-0%{
-transform:translateY(0);
-opacity:1;
-}
-
-100%{
-transform:translateY(110vh);
-opacity:0;
-}
-}
-
-@keyframes fall{
-to{
-transform:translateY(110vh);
-}
-}
-</style>
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- заставка -->
-
 <div id="intro">
-
-<h1>С 8 марта ❤️</h1>
-
-<button onclick="openSite()">Открыть</button>
-
+  <h1>С 8 марта, любимая ❤️</h1>
+  <button onclick="openSite()">Открыть</button>
 </div>
-
-<!-- основной сайт -->
 
 <div id="main">
+  <h1 style="font-family: 'Great Vibes', cursive; font-size: clamp(3rem, 8vw, 5rem);">
+    С 8 марта, Сонечка ❤️
+  </h1>
 
-<h1>С 8 марта, Сонечка ❤️</h1>
+  <div id="timer" style="font-size: 1.4rem; margin: 30px 0;"></div>
 
-<div id="timer"></div>
+  <div id="letter"></div>
 
+  <button id="loveButton" style="display:none;" onclick="loveExplosion()">
+    Я так тебя люблю ❤️
+  </button>
 
-<div id="letter"></div>
-<button id="loveButton" onclick="loveExplosion()">
-Я так тебя люблю ❤️
-</button>
-
-<div id="finalText">
-Ты — лучшее, что со мной произошло ❤️
-</div>
+  <div id="finalText" style="display:none; font-size: 2.8rem; margin-top: 50px;">
+    Ты — лучшее, что со мной произошло ❤️
+  </div>
 </div>
 
 <audio id="music" loop playsinline>
-<source src="music.mp3" type="audio/mpeg">
+  <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
+let isOpened = false;
+let i = 0;
 
-/* открытие сайта */
-
-function openSite(){
-
-const intro = document.getElementById("intro");
-
-intro.classList.add("fade-out");
-
-setTimeout(()=>{
-
-intro.style.display="none";
-document.getElementById("main").style.display="block";
-
-document.getElementById("music").play();
-typeLetter();
-
-},1000);
-
-}
-
-/* музыка + письмо */
-
-function startExperience(){
-
-document.getElementById("music").play();
-
-typeLetter();
-
-}
-
-/* таймер отношений */
-
-const startDate = new Date("2026-01-18");
-
-function updateTimer(){
-
-const now = new Date();
-
-const diff = now - startDate;
-
-const days = Math.floor(diff/(1000*60*60*24));
-const hours = Math.floor(diff/(1000*60*60))%24;
-const minutes = Math.floor(diff/(1000*60))%60;
-const seconds = Math.floor(diff/1000)%60;
-
-document.getElementById("timer").innerHTML =
-"Мы вместе уже " +
-days+" дней "+
-hours+" часов "+
-minutes+" минут "+
-seconds+" секунд ❤️";
-
-}
-
-setInterval(updateTimer,1000);
-
-/* печать текста */
-
-const text = `
-
-Я сделал этот сайт специально для тебя, чтобы у тебя всегда была возможность зайти сюда и вспомнить, как я тебя люблю.
+const text = `Я сделал этот сайт специально для тебя, чтобы у тебя всегда была возможность зайти сюда и вспомнить, как я тебя люблю.
 
 Ты сама прекрасно знаешь, что изначально мы ни на что не рассчитывали, но судьба распорядилась иначе, чему я искренне рад.
 
 С твоим появлением моя жизнь обрела новый смысл, Сонечка. Каждый день уже счастливый, ведь у меня есть ты, лучшая девушка в мире.
 
-Спасибо за твою улыбку, терпение,
-поддержку, любовь, за то безграничное счастье, которое ты мне даришь ежедневно
-и просто спасибо за то, что ты есть.
+Спасибо за твою улыбку, терпение, поддержку, любовь, за то безграничное счастье, которое ты мне даришь ежедневно и просто спасибо за то, что ты есть.
 
-С 8 марта, моя маленькая принцесса ❤️
-`;
+С 8 марта, моя маленькая принцесса ❤️`;
 
-let i = 0;
+const startDate = new Date("2026-01-18");
 
-function typeLetter(){
-
-if(i < text.length){
-
-document.getElementById("letter").innerHTML += text.charAt(i);
-
-i++;
-
-setTimeout(typeLetter,100);
-else{
-document.getElementById("loveButton").style.display="inline-block";
-}
-  
-setInterval(createHeart,3000);
+function updateTimer() {
+  const diff = Date.now() - startDate;
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor(diff / 3600000) % 24;
+  const m = Math.floor(diff / 60000) % 60;
+  const s = Math.floor(diff / 1000) % 60;
+  document.getElementById("timer").innerHTML =
+    `Мы вместе уже ${d} дн ${h} ч ${m} мин ${s} сек ❤️`;
 }
 
+setInterval(updateTimer, 1000);
+
+function openSite() {
+  if (isOpened) return;
+  isOpened = true;
+
+  const intro = document.getElementById("intro");
+  intro.classList.add("fade-out");
+
+  setTimeout(() => {
+    intro.style.display = "none";
+    document.getElementById("main").style.display = "block";
+    document.getElementById("music").play().catch(() => {});
+    typeLetter();
+  }, 1200);
 }
-function createHeart(){
 
-const heart = document.createElement("div");
+function typeLetter() {
+  if (i < text.length) {
+    document.getElementById("letter").innerHTML += text[i];
+    i++;
+    setTimeout(typeLetter, 85);   // чуть быстрее выглядит лучше
+  } else {
+    document.getElementById("loveButton").style.display = "inline-block";
+    setInterval(createHeart, 2200);
+  }
+}
 
-heart.className = "heart";
-heart.innerHTML = "❤️";
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (4 + Math.random() * 5) + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 9000);
+}
 
-heart.style.left = Math.random()*100 + "vw";
-heart.style.animationDuration = (3 + Math.random()*3) + "s";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>{
-heart.remove();
-},6000);
-
+function loveExplosion() {
+  // можно добавить красивую анимацию позже
+  document.getElementById("finalText").style.display = "block";
+  // например: конфетти, больше сердечек и т.д.
 }
 </script>
-
 </body>
 </html>
